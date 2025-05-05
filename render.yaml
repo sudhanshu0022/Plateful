@@ -7,7 +7,7 @@ services:
     startCommand: |
       python manage.py migrate &&
       python manage.py collectstatic --noinput &&
-      gunicorn yourprojectname.wsgi:application
+      gunicorn food.wsgi:application
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: yourprojectname.settings

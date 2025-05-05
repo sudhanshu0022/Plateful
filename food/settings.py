@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'eat.apps.EatConfig',  # Custom app for the food project
-    'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE = [
