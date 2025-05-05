@@ -21,12 +21,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-07s$k3dnmz&0+q!4gve&o-t58(p@9&n=f!d(wokyaj^y665i@c'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-07s$k3dnmz&0+q!4gve&o-t58(p@9&n=f!d(wokyaj^y665i@c')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'plateful-idf5.onrender.com']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'eat.apps.EatConfig',  # Custom app for the food project
+    'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +50,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'food.urls'
@@ -136,3 +139,5 @@ LOGIN_URL = 'eat:login'  # URL to redirect to for login
 LOGIN_REDIRECT_URL = 'eat:index'  # Where to redirect after login
 LOGOUT_REDIRECT_URL = 'eat:index'  # Where to redirect after logout
 AUTH_USER_MODEL = 'auth.User'
+
+CSRF_TRUSTED_ORIGINS = ['https://plateful-idf5.onrender.com']

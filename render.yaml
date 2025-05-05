@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: plateful
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: |
+      python manage.py migrate &&
+      python manage.py collectstatic --noinput &&
+      gunicorn yourprojectname.wsgi:application
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: yourprojectname.settings
+      - key: SECRET_KEY
+        value: your-production-secret-key
+      - key: DEBUG
+        value: False
