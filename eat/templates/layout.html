@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Plateful{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #df8e30;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg" style="background-color: #85460f;">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="/">Plateful</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link text-white" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'eat:menu' %}">Menu</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{% url 'eat:contact' %}">Contact</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'eat:cart' %}">
+                            Cart {% if request.session.cart %}<span class="badge bg-light text-dark">{{ request.session.cart|length }}</span>{% endif %}
+                        </a>
+                    </li>
+                    <ul class="navbar-nav me-auto">
+                        <!-- ... other nav items ... -->
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <span class="nav-link text-white">Welcome, {{ user.username }}</span>
+                            </li>
+                                <!-- In your navbar section -->
+                              {% if user.is_authenticated %}
+                               <li class="nav-item">
+                               <form class="d-inline" action="{% url 'eat:logout' %}" method="post">
+                              {% csrf_token %}
+                               <button type="submit" class="nav-link text-white btn btn-link">Logout</button>
+                                </form>
+                            </li>
+                             {% endif %}
+                            </li>
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link text-white" href="{% url 'eat:login' %}">Login</a></li>
+                            <li class="nav-item"><a class="nav-link text-white" href="{% url 'eat:register' %}">Register</a></li>
+                        {% endif %}
+                    </ul>
+                    <!-- In eat/templates/layout.html -->
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dynamic content -->
+    <div class="container mt-4">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center text-white mt-4" style="background-color: #2e3336; padding: 20px;">
+        <p>&copy; 2023 Plateful. All rights reserved.</p>
+        <p>Follow us on social media:</p>
+        <a href="#" class="text-white me-3">Facebook</a>
+        <a href="#" class="text-white me-3">Twitter</a>
+        <a href="#" class="text-white me-3">Instagram</a>
+        <a href="#" class="text-white">LinkedIn</a>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

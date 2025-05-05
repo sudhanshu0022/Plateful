@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}Your Cart | Plateful{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Your Plateful Cart</h1>
+    
+    {% if cart_items %}
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-body" style="background-color: #85460f;">
+                    {% for cart_item in cart_items %}
+                    <div class="row align-items-center mb-4">
+                        <div class="col-3">
+                            <img src="{{ cart_item.item.image.url }}" class="img-fluid rounded" alt="{{ cart_item.item.name }}" style="height: 100px; object-fit: cover;">
+                        </div>
+                        <div class="col-5">
+                            <h5 class="text-white">{{ cart_item.item.name }}</h5>
+                            <p class="text-white-50 mb-0">${{ cart_item.item.price }}</p>
+                        </div>
+                        <div class="col-4">
+                            <form method="post" action="{% url 'eat:update_cart' %}">
+                                {% csrf_token %}
+                                <div class="input-group">
+                                    <input type="number" name="{{ cart_item.item.id }}" 
+                                           value="{{ cart_item.quantity }}" 
+                                           min="1" class="form-control">
+                                    <button type="submit" class="btn btn-outline-light">Update</button>
+                                </div>
+                            </form>
+                            <a href="{% url 'eat:remove_from_cart' cart_item.item.id %}" 
+                               class="btn btn-link text-danger p-0 mt-2">Remove</a>
+                        </div>
+                    </div>
+                    <hr class="text-white-50">
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card shadow">
+                <div class="card-body" style="background-color: #85460f;">
+                    <h5 class="text-white mb-4">Order Summary</h5>
+                    <div class="d-flex justify-content-between mb-3">
+                        <span class="text-white">Subtotal:</span>
+                        <span class="text-white">${{ total|floatformat:2 }}</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-4">
+                        <span class="text-white">Total:</span>
+                        <span class="text-warning h5">${{ total|floatformat:2 }}</span>
+                    </div>
+                    <a href="#" class="btn btn-light w-100">Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="text-center">
+        <h4 class="text-white">Your cart is empty</h4>
+        <a href="{% url 'eat:menu' %}" class="btn btn-outline-light mt-3">Browse Menu</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

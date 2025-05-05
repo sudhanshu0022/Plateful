@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}Login | Plateful{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow" style="background-color: #85460f;">
+                <div class="card-body">
+                    <h2 class="text-center text-white mb-4">Login to Plateful</h2>
+                    
+                    <form method="post" action="{% url 'eat:login' %}">
+                        {% csrf_token %}
+                        
+                        {% if form.errors %}
+                            <div class="alert alert-danger">
+                                Invalid username or password. Please try again.
+                            </div>
+                        {% endif %}
+                        
+                        <div class="mb-3">
+                            <label for="username" class="form-label text-white">Username</label>
+                            <input type="text" name="username" class="form-control" 
+                                   id="username" required autofocus>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="password" class="form-label text-white">Password</label>
+                            <input type="password" name="password" class="form-control" 
+                                   id="password" required>
+                        </div>
+                        
+                        <div class="d-grid mb-3">
+                            <button type="submit" class="btn btn-light btn-lg">Login</button>
+                        </div>
+                        
+                        <div class="text-center">
+                            <p class="text-white">
+                                Don't have an account? 
+                                <a href="{% url 'eat:register' %}" class="text-warning">Register here</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

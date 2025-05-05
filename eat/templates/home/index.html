@@ -1,0 +1,68 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}Home | Plateful{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center text-white mt-4">Welcome to the Plateful</h1>
+    </div>
+    <div class="container text-center mt-4">
+    <img src="{% static 'food/eat/images/22.png' %}" class="float-start" alt="food" style="width: 30%; height: auto;">
+    <img src="{% static 'food/eat/images/logo.png' %}" class="rounded" alt="Food" style="width: 30%; height: auto;">
+    <img src="{% static 'food/eat/images/11.png' %}" class="float-end" alt="food" style="width: 30%; height: auto;">
+    </div>  
+    <div class="container mt-4">
+      <p class="text-center fst-italic text-white" fontstyle="times Roman">Discover a world of flavors and culinary delights with us. Join our community of food enthusiasts and explore the best recipes, cooking tips, and food stories from around the globe.</p>
+      <p class="text-center fst-italic text-white" fontstyle="Italic">Whether you're a seasoned chef or just starting your culinary journey, we have something for everyone. Let's embark on this delicious adventure together!</p>
+      <p class="text-center fst-italic text-white" fontstyle="Italic">Join us in celebrating the joy of cooking and the love of food. Welcome to Plateful!</p>
+      <p class="text-center fst-italic text-white" fontstyle="Italic">Explore our collection of recipes, cooking tips, and food stories. Let's make every meal a memorable one!</p>
+    </div>
+    <div class="container mt-4">
+      <h2 class="text-center text-white">Most Popular Dishes</h2>
+      </div>  
+    <div class="container mt-4">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+      <div class="col">
+        <div class="card">
+          <img src="{% static 'food/eat/images/1.png' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Idli & Chutney</h5>
+            <p class="card-text">A classic South Indian combo — idli & chutney! 🥥🍛
+              Idli: Soft, fluffy steamed rice cakes made from a fermented batter of rice and urad dal (black gram). Super light, easy on the stomach, and naturally gluten-free.
+              Chutney: Usually coconut-based, but there are tons of variations:</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img src="{% static 'food/eat/images/2.png' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Jalebi</h5>
+            <p class="card-text">jalebi — now we’re talking sugar spiral heaven! 🍯🔥
+               Golden, crispy on the outside, juicy and syrupy inside — made by deep-frying fermented maida batter in circular swirls and soaking them in saffron-cardamom sugar syrup. Sweet, sticky, and just melts in your mouth.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img src="{% static 'food/eat/images/3.png' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Plain Thali</h5>
+            <p class="card-text">Plain thali — the OG comfort meal. 🍽️✨
+              A classic Indian thali keeps it simple but balanced — usually served on a steel plate with small katoris (bowls), hitting all the flavor notes: salty, spicy, tangy, and sweet Optional sides: chutney, salad, and sometimes a small bowl of buttermilk</p>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img src="{% static 'food/eat/images/4.png' %}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Paneer Tikka</h5>
+            <p class="card-text">Ahhh yes, paneer tikka – the vegetarian rockstar of tandoori grills!Chunks of paneer marinated in a spicy, tangy yogurt-based masala, skewered with bell peppers and onions, and roasted or grilled to smoky perfection.Tandoor or oven-roasted – it never disappoints.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+{% endblock %}
