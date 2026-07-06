@@ -153,8 +153,8 @@ screenshots/
 
 **Sudhanshu Kumar Agrawal**
 
-* GitHub: https://github.com/your-username
-* LinkedIn: https://linkedin.com/in/your-profile
+* GitHub: https://github.com/sudhanshu0022/Plateful
+* LinkedIn: www.linkedin.com/in/sudhanshu-kumar-agrawal
 
 ---
 
